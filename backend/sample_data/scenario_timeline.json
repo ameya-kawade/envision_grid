@@ -1,0 +1,48 @@
+{
+  "scenario": "Industrial Emission Incident \u2014 Grid 40.71_-74.01",
+  "events": [
+    {
+      "time": "T+0h",
+      "type": "complaint",
+      "label": "Citizen Complaints Begin",
+      "description": "3 complaints about chemical smell reported in neighborhood app."
+    },
+    {
+      "time": "T+2h",
+      "type": "complaint",
+      "label": "Complaint Intensity Rises",
+      "description": "5 more complaints; intensity 4-5. ENVISIONGRID complaint_trend feature spikes."
+    },
+    {
+      "time": "T+4h",
+      "type": "violation",
+      "label": "Inspector Finds Violation",
+      "description": "Illegal emission from Facility_13 logged. Severity 5. Repeat offender flagged."
+    },
+    {
+      "time": "T+6h",
+      "type": "envisiongrid_alert",
+      "label": "\ud83d\udea8 ENVISIONGRID Alert Triggered",
+      "description": "Risk score: 0.82 (CRITICAL). Drivers: repeat offender + complaint surge + severity spike. Case auto-created."
+    },
+    {
+      "time": "T+18h",
+      "type": "sensor_spike",
+      "label": "Sensor Detects AQI Spike",
+      "description": "SENSOR_A1 reports AQI 185. Confirms prediction from 12 hours ago."
+    },
+    {
+      "time": "T+24h",
+      "type": "sensor_spike",
+      "label": "Sensor AQI Peak",
+      "description": "AQI reaches 220. ENVISIONGRID confidence boosted to 0.95 with sensor validation."
+    },
+    {
+      "time": "T+36h",
+      "type": "incident",
+      "label": "Health Advisory Issued",
+      "description": "City issues air quality health advisory. ENVISIONGRID predicted this 30 hours earlier."
+    }
+  ],
+  "key_insight": "ENVISIONGRID detected risk 18 hours before the sensor spike and 30 hours before the public health advisory, using multi-signal intelligence (complaints + violations + repeat offender patterns)."
+}

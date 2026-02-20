@@ -1,0 +1,301 @@
+violation_id,timestamp,lat,lon,violation_type,severity,description,source
+V_00000,2026-02-18T08:48:24.120233,40.72429,-73.99641,industrial_emission,5,Industrial Emission near Facility_13,Facility_13
+V_00001,2026-02-12T10:48:24.120233,40.69737,-73.99516,sewage_discharge,3,Sewage Discharge near Facility_24,Facility_24
+V_00002,2026-02-18T06:48:24.120233,40.72139,-73.99437,industrial_emission,5,Industrial Emission near Facility_13,Facility_13
+V_00003,2026-02-17T14:48:24.120233,40.6914,-74.00384,sewage_discharge,3,Sewage Discharge near Facility_07,Facility_07
+V_00004,2026-02-15T17:48:24.120233,40.73976,-74.01506,vehicle_emission,1,Vehicle Emission near Facility_19,Facility_19
+V_00005,2026-02-16T02:48:24.120233,40.70856,-74.02789,illegal_dumping,2,Illegal Dumping near Facility_23,Facility_23
+V_00006,2026-02-18T23:48:24.120233,40.74117,-74.01567,noise_violation,1,Noise Violation near Facility_05,Facility_05
+V_00007,2026-02-19T04:48:24.120233,40.69393,-73.9978,chemical_spill,3,Chemical Spill near Facility_03,Facility_03
+V_00008,2026-02-18T20:48:24.120233,40.74099,-74.01044,vehicle_emission,1,Vehicle Emission near Facility_12,Facility_12
+V_00009,2026-02-13T08:48:24.120233,40.70963,-74.02669,illegal_dumping,2,Illegal Dumping near Facility_15,Facility_15
+V_00010,2026-02-02T05:48:24.120233,40.72343,-74.00188,industrial_emission,5,Industrial Emission near Facility_13,Facility_13
+V_00011,2026-02-06T09:48:24.120233,40.71339,-74.02534,illegal_dumping,2,Illegal Dumping near Facility_03,Facility_03
+V_00012,2026-02-10T22:48:24.120233,40.72245,-73.9969,industrial_emission,2,Industrial Emission near Facility_03,Facility_03
+V_00013,2026-02-15T23:48:24.120233,40.72064,-74.00004,illegal_burning,3,Illegal Burning near Facility_15,Facility_15
+V_00014,2026-02-18T20:48:24.120233,40.71377,-74.02716,illegal_dumping,1,Illegal Dumping near Facility_12,Facility_12
+V_00015,2026-02-12T09:48:24.120233,40.69464,-73.99425,chemical_spill,3,Chemical Spill near Facility_22,Facility_22
+V_00016,2026-02-16T14:48:24.120233,40.72028,-73.99693,industrial_emission,5,Industrial Emission near Facility_13,Facility_13
+V_00017,2026-02-17T23:48:24.120233,40.74573,-74.01653,noise_violation,1,Noise Violation near Facility_21,Facility_21
+V_00018,2026-02-19T06:48:24.120233,40.69524,-73.99193,chemical_spill,2,Chemical Spill near Facility_08,Facility_08
+V_00019,2026-02-14T19:48:24.120233,40.72581,-73.99308,industrial_emission,5,Industrial Emission near Facility_13,Facility_13
+V_00020,2026-02-18T11:48:24.120233,40.71269,-74.02131,illegal_dumping,1,Illegal Dumping near Facility_16,Facility_16
+V_00021,2026-02-16T03:48:24.120233,40.74527,-74.02026,noise_violation,2,Noise Violation near Facility_09,Facility_09
+V_00022,2026-02-17T08:48:24.120233,40.69214,-73.99493,sewage_discharge,4,Sewage Discharge near Facility_18,Facility_18
+V_00023,2026-02-18T13:48:24.120233,40.71125,-74.02664,dumping,1,Dumping near Facility_13,Facility_13
+V_00024,2026-02-08T03:48:24.120233,40.71555,-74.02501,illegal_dumping,1,Illegal Dumping near Facility_17,Facility_17
+V_00025,2026-02-08T06:48:24.120233,40.74434,-74.01188,vehicle_emission,2,Vehicle Emission near Facility_04,Facility_04
+V_00026,2026-02-10T10:48:24.120233,40.69069,-73.99698,sewage_discharge,2,Sewage Discharge near Facility_14,Facility_14
+V_00027,2026-02-17T19:48:24.121235,40.71841,-74.00397,illegal_burning,4,Illegal Burning near Facility_20,Facility_20
+V_00028,2026-02-15T10:48:24.121235,40.71177,-74.02841,illegal_dumping,1,Illegal Dumping near Facility_24,Facility_24
+V_00029,2026-02-01T11:48:24.121235,40.72401,-73.99883,industrial_emission,5,Industrial Emission near Facility_13,Facility_13
+V_00030,2026-02-18T17:48:24.121235,40.73704,-74.01608,vehicle_emission,2,Vehicle Emission near Facility_01,Facility_01
+V_00031,2026-02-17T15:48:24.121235,40.72019,-74.02457,illegal_dumping,1,Illegal Dumping near Facility_04,Facility_04
+V_00032,2026-02-18T03:48:24.121235,40.7127,-74.02951,illegal_dumping,2,Illegal Dumping near Facility_12,Facility_12
+V_00033,2026-02-13T12:48:24.121235,40.69506,-73.99841,sewage_discharge,4,Sewage Discharge near Facility_11,Facility_11
+V_00034,2026-02-19T04:48:24.121235,40.74456,-74.00943,vehicle_emission,1,Vehicle Emission near Facility_12,Facility_12
+V_00035,2026-02-19T06:48:24.121235,40.7111,-74.02088,illegal_dumping,2,Illegal Dumping near Facility_08,Facility_08
+V_00036,2026-02-13T08:48:24.121235,40.71815,-73.99579,industrial_emission,3,Industrial Emission near Facility_16,Facility_16
+V_00037,2026-02-18T10:48:24.121235,40.69422,-73.99414,sewage_discharge,2,Sewage Discharge near Facility_16,Facility_16
+V_00038,2026-02-10T15:48:24.121235,40.69045,-73.99697,chemical_spill,3,Chemical Spill near Facility_20,Facility_20
+V_00039,2026-02-17T14:48:24.121235,40.73911,-74.01191,vehicle_emission,4,Vehicle Emission near Facility_24,Facility_24
+V_00040,2026-02-12T19:48:24.121235,40.69358,-73.99365,chemical_spill,2,Chemical Spill near Facility_22,Facility_22
+V_00041,2026-02-18T15:48:24.121235,40.70884,-74.02415,dumping,2,Dumping near Facility_15,Facility_15
+V_00042,2026-02-14T00:48:24.121235,40.72368,-73.99814,industrial_emission,5,Industrial Emission near Facility_03,Facility_03
+V_00043,2026-02-18T07:48:24.121235,40.69422,-73.9938,sewage_discharge,2,Sewage Discharge near Facility_03,Facility_03
+V_00044,2026-02-14T05:48:24.121235,40.72628,-73.99846,industrial_emission,4,Industrial Emission near Facility_02,Facility_02
+V_00045,2026-02-16T23:48:24.121235,40.72404,-73.9986,industrial_emission,4,Industrial Emission near Facility_22,Facility_22
+V_00046,2026-02-08T00:48:24.121235,40.69013,-73.99845,chemical_spill,2,Chemical Spill near Facility_16,Facility_16
+V_00047,2026-02-16T04:48:24.121235,40.74382,-74.01237,vehicle_emission,2,Vehicle Emission near Facility_04,Facility_04
+V_00048,2026-02-17T18:48:24.121235,40.74201,-74.00784,noise_violation,2,Noise Violation near Facility_14,Facility_14
+V_00049,2026-02-18T10:48:24.121235,40.74023,-74.01587,vehicle_emission,1,Vehicle Emission near Facility_21,Facility_21
+V_00050,2026-02-02T19:48:24.121235,40.72213,-73.99386,industrial_emission,4,Industrial Emission near Facility_24,Facility_24
+V_00051,2026-02-17T01:48:24.121235,40.72258,-73.99736,industrial_emission,4,Industrial Emission near Facility_07,Facility_07
+V_00052,2026-02-06T02:48:24.121235,40.69146,-73.99343,chemical_spill,3,Chemical Spill near Facility_09,Facility_09
+V_00053,2026-02-19T05:48:24.121235,40.73906,-74.01411,vehicle_emission,3,Vehicle Emission near Facility_15,Facility_15
+V_00054,2026-02-13T11:48:24.121235,40.72297,-73.99943,industrial_emission,4,Industrial Emission near Facility_18,Facility_18
+V_00055,2026-02-18T02:48:24.121235,40.72448,-73.99888,industrial_emission,5,Industrial Emission near Facility_14,Facility_14
+V_00056,2026-02-11T06:48:24.121235,40.69435,-73.99446,chemical_spill,3,Chemical Spill near Facility_06,Facility_06
+V_00057,2026-02-11T19:48:24.121235,40.75436,-74.01201,vehicle_emission,2,Vehicle Emission near Facility_09,Facility_09
+V_00058,2026-02-14T18:48:24.121235,40.74185,-74.01372,noise_violation,1,Noise Violation near Facility_23,Facility_23
+V_00059,2026-02-16T01:48:24.121235,40.74209,-74.01612,vehicle_emission,1,Vehicle Emission near Facility_10,Facility_10
+V_00060,2026-02-18T13:48:24.121235,40.69486,-74.00084,sewage_discharge,2,Sewage Discharge near Facility_24,Facility_24
+V_00061,2026-02-18T06:48:24.121235,40.72607,-73.99132,illegal_burning,4,Illegal Burning near Facility_02,Facility_02
+V_00062,2026-02-15T15:48:24.121235,40.69061,-73.99535,sewage_discharge,3,Sewage Discharge near Facility_03,Facility_03
+V_00063,2026-01-31T12:48:24.121235,40.69085,-73.99191,sewage_discharge,3,Sewage Discharge near Facility_03,Facility_03
+V_00064,2026-02-17T04:48:24.121235,40.68672,-73.99544,chemical_spill,2,Chemical Spill near Facility_19,Facility_19
+V_00065,2026-02-18T12:48:24.121235,40.69536,-73.99832,sewage_discharge,4,Sewage Discharge near Facility_03,Facility_03
+V_00066,2026-02-13T23:48:24.121235,40.74138,-74.01796,noise_violation,3,Noise Violation near Facility_07,Facility_07
+V_00067,2026-02-14T23:48:24.121235,40.71401,-74.02487,illegal_dumping,3,Illegal Dumping near Facility_13,Facility_13
+V_00068,2026-02-18T17:48:24.122233,40.68824,-73.99745,chemical_spill,4,Chemical Spill near Facility_11,Facility_11
+V_00069,2026-02-18T17:48:24.122233,40.72068,-73.99671,industrial_emission,5,Industrial Emission near Facility_20,Facility_20
+V_00070,2026-02-16T14:48:24.122233,40.71308,-73.99907,industrial_emission,3,Industrial Emission near Facility_07,Facility_07
+V_00071,2026-02-19T05:48:24.122233,40.68906,-73.99137,chemical_spill,4,Chemical Spill near Facility_08,Facility_08
+V_00072,2026-02-14T02:48:24.122233,40.71712,-74.03031,dumping,2,Dumping near Facility_15,Facility_15
+V_00073,2026-02-14T10:48:24.122233,40.71283,-74.02661,illegal_dumping,2,Illegal Dumping near Facility_18,Facility_18
+V_00074,2026-02-16T03:48:24.122233,40.71314,-74.02401,illegal_dumping,3,Illegal Dumping near Facility_09,Facility_09
+V_00075,2026-02-16T08:48:24.122233,40.71909,-73.99394,industrial_emission,5,Industrial Emission near Facility_13,Facility_13
+V_00076,2026-02-09T09:48:24.122233,40.71364,-74.02787,illegal_dumping,1,Illegal Dumping near Facility_11,Facility_11
+V_00077,2026-02-13T15:48:24.122233,40.69132,-73.99787,chemical_spill,2,Chemical Spill near Facility_16,Facility_16
+V_00078,2026-02-18T05:48:24.122233,40.7155,-74.02508,illegal_dumping,2,Illegal Dumping near Facility_21,Facility_21
+V_00079,2026-02-11T06:48:24.122233,40.74469,-74.01434,noise_violation,1,Noise Violation near Facility_01,Facility_01
+V_00080,2026-02-16T11:48:24.122233,40.71274,-74.02565,illegal_dumping,3,Illegal Dumping near Facility_09,Facility_09
+V_00081,2026-02-11T14:48:24.122233,40.69103,-73.99134,chemical_spill,2,Chemical Spill near Facility_23,Facility_23
+V_00082,2026-02-17T04:48:24.122233,40.74672,-74.01594,vehicle_emission,2,Vehicle Emission near Facility_03,Facility_03
+V_00083,2026-02-04T20:48:24.122233,40.69187,-73.99681,sewage_discharge,2,Sewage Discharge near Facility_19,Facility_19
+V_00084,2026-02-18T03:48:24.122233,40.69309,-73.99421,chemical_spill,2,Chemical Spill near Facility_02,Facility_02
+V_00085,2026-02-13T06:48:24.122233,40.71908,-74.02239,dumping,1,Dumping near Facility_12,Facility_12
+V_00086,2026-02-18T10:48:24.122233,40.69467,-73.99411,sewage_discharge,2,Sewage Discharge near Facility_04,Facility_04
+V_00087,2026-02-08T12:48:24.122233,40.71011,-74.03227,dumping,3,Dumping near Facility_24,Facility_24
+V_00088,2026-02-15T02:48:24.122233,40.69032,-73.99696,sewage_discharge,3,Sewage Discharge near Facility_06,Facility_06
+V_00089,2026-02-11T02:48:24.122233,40.74111,-74.0173,vehicle_emission,2,Vehicle Emission near Facility_24,Facility_24
+V_00090,2026-02-10T10:48:24.122233,40.71139,-74.0253,dumping,1,Dumping near Facility_24,Facility_24
+V_00091,2026-02-19T02:48:24.122233,40.68858,-73.99799,chemical_spill,4,Chemical Spill near Facility_23,Facility_23
+V_00092,2026-02-19T06:48:24.122233,40.72373,-73.99157,industrial_emission,5,Industrial Emission near Facility_13,Facility_13
+V_00093,2026-02-15T22:48:24.122233,40.74232,-74.01691,noise_violation,1,Noise Violation near Facility_08,Facility_08
+V_00094,2026-02-02T10:48:24.122233,40.69377,-73.99848,sewage_discharge,3,Sewage Discharge near Facility_07,Facility_07
+V_00095,2026-02-08T23:48:24.122233,40.7474,-74.02034,noise_violation,1,Noise Violation near Facility_03,Facility_03
+V_00096,2026-02-01T11:48:24.122233,40.71347,-74.02596,dumping,2,Dumping near Facility_17,Facility_17
+V_00097,2026-02-14T07:48:24.122233,40.74048,-74.00917,noise_violation,2,Noise Violation near Facility_04,Facility_04
+V_00098,2026-02-18T13:48:24.122233,40.71926,-74.0283,illegal_dumping,2,Illegal Dumping near Facility_09,Facility_09
+V_00099,2026-02-14T12:48:24.122233,40.72335,-73.99633,industrial_emission,4,Industrial Emission near Facility_14,Facility_14
+V_00100,2026-02-14T12:48:24.122233,40.71028,-74.0278,dumping,1,Dumping near Facility_17,Facility_17
+V_00101,2026-02-10T13:48:24.122233,40.72122,-74.00174,industrial_emission,5,Industrial Emission near Facility_13,Facility_13
+V_00102,2026-02-05T15:48:24.122233,40.7401,-74.01452,vehicle_emission,1,Vehicle Emission near Facility_18,Facility_18
+V_00103,2026-02-10T18:48:24.122233,40.69829,-73.99622,chemical_spill,2,Chemical Spill near Facility_03,Facility_03
+V_00104,2026-02-16T10:48:24.122233,40.70766,-74.02194,dumping,1,Dumping near Facility_04,Facility_04
+V_00105,2026-02-08T10:48:24.122233,40.71651,-74.02633,dumping,1,Dumping near Facility_14,Facility_14
+V_00106,2026-02-16T09:48:24.122233,40.71282,-74.02586,dumping,1,Dumping near Facility_10,Facility_10
+V_00107,2026-02-13T18:48:24.122233,40.69467,-74.00011,sewage_discharge,3,Sewage Discharge near Facility_22,Facility_22
+V_00108,2026-02-15T12:48:24.122233,40.7382,-74.01217,vehicle_emission,2,Vehicle Emission near Facility_19,Facility_19
+V_00109,2026-02-09T14:48:24.122233,40.71055,-74.02566,dumping,3,Dumping near Facility_01,Facility_01
+V_00110,2026-02-19T01:48:24.123231,40.71898,-74.02073,dumping,1,Dumping near Facility_14,Facility_14
+V_00111,2026-02-17T17:48:24.123231,40.71571,-74.02153,dumping,2,Dumping near Facility_15,Facility_15
+V_00112,2026-02-07T08:48:24.123231,40.69598,-74.00128,chemical_spill,2,Chemical Spill near Facility_06,Facility_06
+V_00113,2026-02-11T15:48:24.123231,40.71668,-73.9954,illegal_burning,2,Illegal Burning near Facility_22,Facility_22
+V_00114,2026-02-16T00:48:24.123231,40.71769,-74.03014,illegal_dumping,1,Illegal Dumping near Facility_22,Facility_22
+V_00115,2026-02-18T01:48:24.123231,40.71263,-74.02602,illegal_dumping,2,Illegal Dumping near Facility_05,Facility_05
+V_00116,2026-02-18T00:48:24.123231,40.71889,-73.99399,industrial_emission,4,Industrial Emission near Facility_16,Facility_16
+V_00117,2026-02-15T18:48:24.123231,40.71998,-73.99376,illegal_burning,3,Illegal Burning near Facility_21,Facility_21
+V_00118,2026-02-18T19:48:24.123231,40.73984,-74.01449,noise_violation,1,Noise Violation near Facility_08,Facility_08
+V_00119,2026-02-17T04:48:24.123231,40.69042,-74.0003,sewage_discharge,2,Sewage Discharge near Facility_14,Facility_14
+V_00120,2026-02-08T09:48:24.123231,40.69869,-73.99589,sewage_discharge,2,Sewage Discharge near Facility_17,Facility_17
+V_00121,2026-02-12T14:48:24.123231,40.74344,-74.01345,vehicle_emission,1,Vehicle Emission near Facility_08,Facility_08
+V_00122,2026-02-15T03:48:24.123231,40.72121,-73.99773,illegal_burning,3,Illegal Burning near Facility_15,Facility_15
+V_00123,2026-02-12T12:48:24.123231,40.70589,-74.02788,dumping,1,Dumping near Facility_24,Facility_24
+V_00124,2026-02-19T02:48:24.123231,40.74453,-74.01507,noise_violation,4,Noise Violation near Facility_24,Facility_24
+V_00125,2026-02-17T23:48:24.123231,40.74616,-74.01143,noise_violation,1,Noise Violation near Facility_08,Facility_08
+V_00126,2026-02-18T11:48:24.123231,40.71053,-74.03027,dumping,1,Dumping near Facility_08,Facility_08
+V_00127,2026-02-14T05:48:24.123231,40.70956,-74.02535,dumping,2,Dumping near Facility_23,Facility_23
+V_00128,2026-02-14T23:48:24.123231,40.71278,-74.02156,illegal_dumping,2,Illegal Dumping near Facility_11,Facility_11
+V_00129,2026-02-19T03:48:24.123231,40.71022,-74.02732,illegal_dumping,3,Illegal Dumping near Facility_05,Facility_05
+V_00130,2026-02-16T09:48:24.123231,40.69017,-74.00015,chemical_spill,3,Chemical Spill near Facility_05,Facility_05
+V_00131,2026-02-17T18:48:24.123231,40.69853,-73.99592,sewage_discharge,3,Sewage Discharge near Facility_14,Facility_14
+V_00132,2026-02-18T18:48:24.123231,40.71085,-74.02746,dumping,1,Dumping near Facility_02,Facility_02
+V_00133,2026-01-29T19:48:24.123231,40.69021,-74.00351,chemical_spill,3,Chemical Spill near Facility_19,Facility_19
+V_00134,2026-02-18T16:48:24.123231,40.72208,-73.99872,illegal_burning,3,Illegal Burning near Facility_01,Facility_01
+V_00135,2026-02-14T18:48:24.123231,40.71507,-74.02442,dumping,2,Dumping near Facility_18,Facility_18
+V_00136,2026-02-18T00:48:24.123231,40.68779,-73.99437,chemical_spill,2,Chemical Spill near Facility_09,Facility_09
+V_00137,2026-02-18T07:48:24.123231,40.74451,-74.01516,noise_violation,1,Noise Violation near Facility_13,Facility_13
+V_00138,2026-02-18T08:48:24.123231,40.71358,-74.02871,dumping,2,Dumping near Facility_06,Facility_06
+V_00139,2026-02-18T12:48:24.123231,40.73782,-74.00765,vehicle_emission,1,Vehicle Emission near Facility_18,Facility_18
+V_00140,2026-02-17T13:48:24.123231,40.72022,-73.99715,illegal_burning,4,Illegal Burning near Facility_19,Facility_19
+V_00141,2026-02-15T03:48:24.123231,40.72107,-73.99268,industrial_emission,5,Industrial Emission near Facility_13,Facility_13
+V_00142,2026-02-10T21:48:24.123231,40.70539,-74.02839,dumping,2,Dumping near Facility_07,Facility_07
+V_00143,2026-02-18T21:48:24.123231,40.74219,-74.01549,noise_violation,2,Noise Violation near Facility_13,Facility_13
+V_00144,2026-02-18T23:48:24.123231,40.71306,-74.02647,dumping,2,Dumping near Facility_03,Facility_03
+V_00145,2026-02-18T08:48:24.123231,40.74356,-74.01778,vehicle_emission,2,Vehicle Emission near Facility_18,Facility_18
+V_00146,2026-02-17T00:48:24.123231,40.72398,-73.99726,industrial_emission,5,Industrial Emission near Facility_13,Facility_13
+V_00147,2026-02-11T00:48:24.123231,40.72903,-73.99681,industrial_emission,4,Industrial Emission near Facility_07,Facility_07
+V_00148,2026-02-13T03:48:24.123231,40.68669,-73.99902,sewage_discharge,1,Sewage Discharge near Facility_16,Facility_16
+V_00149,2026-02-07T17:48:24.123231,40.72175,-74.00074,industrial_emission,5,Industrial Emission near Facility_13,Facility_13
+V_00150,2026-02-18T12:48:24.123231,40.71529,-74.03263,illegal_dumping,2,Illegal Dumping near Facility_20,Facility_20
+V_00151,2026-02-16T22:48:24.123231,40.72511,-73.9955,industrial_emission,4,Industrial Emission near Facility_04,Facility_04
+V_00152,2026-02-07T19:48:24.123231,40.71382,-74.02725,dumping,2,Dumping near Facility_23,Facility_23
+V_00153,2026-02-17T13:48:24.123231,40.69961,-73.99746,sewage_discharge,3,Sewage Discharge near Facility_23,Facility_23
+V_00154,2026-02-11T09:48:24.123231,40.69529,-73.99857,sewage_discharge,3,Sewage Discharge near Facility_10,Facility_10
+V_00155,2026-02-10T20:48:24.123231,40.72137,-73.99704,industrial_emission,4,Industrial Emission near Facility_18,Facility_18
+V_00156,2026-02-17T15:48:24.123231,40.71199,-74.02894,illegal_dumping,1,Illegal Dumping near Facility_21,Facility_21
+V_00157,2026-02-13T18:48:24.123231,40.71393,-74.02311,illegal_dumping,2,Illegal Dumping near Facility_16,Facility_16
+V_00158,2026-02-17T20:48:24.123231,40.72404,-73.99037,illegal_burning,3,Illegal Burning near Facility_21,Facility_21
+V_00159,2026-02-16T18:48:24.123231,40.73907,-74.01549,vehicle_emission,2,Vehicle Emission near Facility_06,Facility_06
+V_00160,2026-02-15T17:48:24.123231,40.71476,-74.02617,dumping,2,Dumping near Facility_14,Facility_14
+V_00161,2026-02-09T00:48:24.123231,40.70942,-74.02661,dumping,2,Dumping near Facility_03,Facility_03
+V_00162,2026-02-13T00:48:24.123231,40.71313,-74.02382,dumping,2,Dumping near Facility_15,Facility_15
+V_00163,2026-02-15T07:48:24.123231,40.74347,-74.01525,noise_violation,1,Noise Violation near Facility_16,Facility_16
+V_00164,2026-01-29T16:48:24.123231,40.71758,-74.02753,illegal_dumping,1,Illegal Dumping near Facility_07,Facility_07
+V_00165,2026-02-16T21:48:24.123231,40.71242,-74.01838,dumping,2,Dumping near Facility_09,Facility_09
+V_00166,2026-02-15T15:48:24.123231,40.71233,-74.02728,illegal_dumping,1,Illegal Dumping near Facility_07,Facility_07
+V_00167,2026-02-16T08:48:24.123231,40.71784,-73.99669,industrial_emission,4,Industrial Emission near Facility_14,Facility_14
+V_00168,2026-02-18T11:48:24.123231,40.69179,-73.99099,chemical_spill,2,Chemical Spill near Facility_23,Facility_23
+V_00169,2026-02-17T07:48:24.123231,40.73829,-74.01602,noise_violation,1,Noise Violation near Facility_03,Facility_03
+V_00170,2026-02-18T19:48:24.123231,40.71211,-74.02391,illegal_dumping,3,Illegal Dumping near Facility_23,Facility_23
+V_00171,2026-02-02T10:48:24.124231,40.69618,-73.99905,chemical_spill,3,Chemical Spill near Facility_19,Facility_19
+V_00172,2026-02-18T14:48:24.124231,40.71199,-74.02932,dumping,4,Dumping near Facility_17,Facility_17
+V_00173,2026-02-07T08:48:24.124231,40.71298,-74.02835,dumping,2,Dumping near Facility_18,Facility_18
+V_00174,2026-02-14T09:48:24.124231,40.71108,-74.02764,dumping,1,Dumping near Facility_15,Facility_15
+V_00175,2026-02-16T23:48:24.124231,40.71117,-74.02183,dumping,1,Dumping near Facility_08,Facility_08
+V_00176,2026-02-09T21:48:24.124231,40.72654,-74.00222,industrial_emission,3,Industrial Emission near Facility_04,Facility_04
+V_00177,2026-02-18T01:48:24.124231,40.69169,-73.99645,sewage_discharge,3,Sewage Discharge near Facility_24,Facility_24
+V_00178,2026-02-18T08:48:24.124231,40.73947,-74.01074,noise_violation,2,Noise Violation near Facility_19,Facility_19
+V_00179,2026-02-14T01:48:24.124231,40.71661,-74.02811,illegal_dumping,1,Illegal Dumping near Facility_10,Facility_10
+V_00180,2026-02-19T02:48:24.124231,40.69123,-73.99453,chemical_spill,2,Chemical Spill near Facility_10,Facility_10
+V_00181,2026-02-09T23:48:24.124231,40.72494,-73.99356,industrial_emission,3,Industrial Emission near Facility_02,Facility_02
+V_00182,2026-02-17T11:48:24.124231,40.71172,-74.02252,illegal_dumping,1,Illegal Dumping near Facility_16,Facility_16
+V_00183,2026-02-07T13:48:24.124231,40.72465,-74.00101,industrial_emission,5,Industrial Emission near Facility_10,Facility_10
+V_00184,2026-02-15T02:48:24.124231,40.74123,-74.01285,noise_violation,1,Noise Violation near Facility_02,Facility_02
+V_00185,2026-02-17T04:48:24.124231,40.70857,-74.02373,dumping,1,Dumping near Facility_03,Facility_03
+V_00186,2026-02-12T05:48:24.124231,40.73655,-74.01091,noise_violation,2,Noise Violation near Facility_19,Facility_19
+V_00187,2026-02-11T03:48:24.124231,40.72251,-73.99308,industrial_emission,3,Industrial Emission near Facility_19,Facility_19
+V_00188,2026-02-14T04:48:24.124231,40.72171,-73.99617,industrial_emission,4,Industrial Emission near Facility_18,Facility_18
+V_00189,2026-02-09T17:48:24.124231,40.68767,-73.99787,chemical_spill,2,Chemical Spill near Facility_15,Facility_15
+V_00190,2026-02-18T22:48:24.124231,40.71286,-74.02496,dumping,1,Dumping near Facility_19,Facility_19
+V_00191,2026-02-15T01:48:24.124231,40.72047,-74.00089,industrial_emission,5,Industrial Emission near Facility_13,Facility_13
+V_00192,2026-02-15T00:48:24.124231,40.72589,-73.99458,industrial_emission,4,Industrial Emission near Facility_06,Facility_06
+V_00193,2026-02-06T18:48:24.124231,40.69575,-73.99901,sewage_discharge,3,Sewage Discharge near Facility_15,Facility_15
+V_00194,2026-02-19T06:48:24.124231,40.73728,-74.01984,noise_violation,1,Noise Violation near Facility_08,Facility_08
+V_00195,2026-02-14T09:48:24.124231,40.71288,-74.02704,dumping,2,Dumping near Facility_15,Facility_15
+V_00196,2026-02-12T23:48:24.124231,40.72097,-74.00022,industrial_emission,3,Industrial Emission near Facility_21,Facility_21
+V_00197,2026-02-16T04:48:24.124231,40.68874,-73.99428,chemical_spill,1,Chemical Spill near Facility_18,Facility_18
+V_00198,2026-02-18T23:48:24.124231,40.69428,-73.99545,sewage_discharge,2,Sewage Discharge near Facility_05,Facility_05
+V_00199,2026-02-19T02:48:24.124231,40.7249,-73.99418,industrial_emission,2,Industrial Emission near Facility_10,Facility_10
+V_00200,2026-02-19T04:48:24.124231,40.72048,-74.02629,dumping,2,Dumping near Facility_15,Facility_15
+V_00201,2026-02-15T23:48:24.124231,40.71069,-74.02546,dumping,1,Dumping near Facility_17,Facility_17
+V_00202,2026-02-11T05:48:24.124231,40.74092,-74.01056,noise_violation,2,Noise Violation near Facility_20,Facility_20
+V_00203,2026-02-14T08:48:24.124231,40.72111,-73.99926,illegal_burning,4,Illegal Burning near Facility_11,Facility_11
+V_00204,2026-02-18T00:48:24.124231,40.72062,-73.99674,industrial_emission,3,Industrial Emission near Facility_22,Facility_22
+V_00205,2026-02-12T13:48:24.124231,40.72466,-73.99281,illegal_burning,4,Illegal Burning near Facility_02,Facility_02
+V_00206,2026-02-17T15:48:24.124231,40.69448,-73.99276,chemical_spill,3,Chemical Spill near Facility_21,Facility_21
+V_00207,2026-01-29T02:48:24.124231,40.74418,-74.02058,noise_violation,1,Noise Violation near Facility_19,Facility_19
+V_00208,2026-02-07T05:48:24.124231,40.74409,-74.01538,noise_violation,2,Noise Violation near Facility_16,Facility_16
+V_00209,2026-02-01T21:48:24.124231,40.70897,-74.02466,dumping,1,Dumping near Facility_11,Facility_11
+V_00210,2026-02-17T21:48:24.124231,40.72268,-73.99396,industrial_emission,4,Industrial Emission near Facility_14,Facility_14
+V_00211,2026-02-18T14:48:24.124231,40.71289,-74.03022,dumping,2,Dumping near Facility_02,Facility_02
+V_00212,2026-02-18T21:48:24.124231,40.74347,-74.01744,vehicle_emission,3,Vehicle Emission near Facility_09,Facility_09
+V_00213,2026-02-11T19:48:24.124231,40.71012,-74.02476,illegal_dumping,1,Illegal Dumping near Facility_17,Facility_17
+V_00214,2026-02-17T18:48:24.124231,40.7259,-74.00046,industrial_emission,5,Industrial Emission near Facility_13,Facility_13
+V_00215,2026-02-10T11:48:24.124231,40.71547,-74.02386,dumping,2,Dumping near Facility_15,Facility_15
+V_00216,2026-02-08T23:48:24.124231,40.72125,-73.99177,industrial_emission,5,Industrial Emission near Facility_13,Facility_13
+V_00217,2026-02-12T09:48:24.124231,40.71171,-74.03105,dumping,1,Dumping near Facility_16,Facility_16
+V_00218,2026-02-17T11:48:24.124231,40.72154,-73.99685,industrial_emission,2,Industrial Emission near Facility_20,Facility_20
+V_00219,2026-02-13T14:48:24.124231,40.69004,-74.0018,chemical_spill,2,Chemical Spill near Facility_01,Facility_01
+V_00220,2026-02-15T00:48:24.124231,40.74575,-74.01664,vehicle_emission,1,Vehicle Emission near Facility_04,Facility_04
+V_00221,2026-02-15T11:48:24.124231,40.74482,-74.0125,vehicle_emission,3,Vehicle Emission near Facility_05,Facility_05
+V_00222,2026-02-11T15:48:24.124231,40.74089,-74.01759,noise_violation,1,Noise Violation near Facility_23,Facility_23
+V_00223,2026-02-01T16:48:24.124231,40.71113,-74.02749,dumping,1,Dumping near Facility_16,Facility_16
+V_00224,2026-02-10T14:48:24.124231,40.69706,-73.99771,chemical_spill,2,Chemical Spill near Facility_05,Facility_05
+V_00225,2026-02-15T12:48:24.124231,40.74421,-74.01812,vehicle_emission,1,Vehicle Emission near Facility_17,Facility_17
+V_00226,2026-02-08T23:48:24.124231,40.69744,-73.99061,sewage_discharge,2,Sewage Discharge near Facility_14,Facility_14
+V_00227,2026-02-15T07:48:24.124231,40.71164,-74.02437,dumping,2,Dumping near Facility_10,Facility_10
+V_00228,2026-02-13T03:48:24.124231,40.71227,-74.02839,dumping,1,Dumping near Facility_15,Facility_15
+V_00229,2026-02-17T21:48:24.124231,40.74061,-74.01852,noise_violation,1,Noise Violation near Facility_18,Facility_18
+V_00230,2026-02-15T21:48:24.124231,40.74125,-74.01533,noise_violation,1,Noise Violation near Facility_07,Facility_07
+V_00231,2026-02-17T00:48:24.124231,40.69637,-73.99238,chemical_spill,3,Chemical Spill near Facility_14,Facility_14
+V_00232,2026-02-11T08:48:24.124231,40.72485,-73.99046,illegal_burning,4,Illegal Burning near Facility_16,Facility_16
+V_00233,2026-02-08T10:48:24.124231,40.74172,-74.0132,noise_violation,2,Noise Violation near Facility_21,Facility_21
+V_00234,2026-02-15T06:48:24.124231,40.69526,-73.99448,chemical_spill,3,Chemical Spill near Facility_05,Facility_05
+V_00235,2026-02-08T17:48:24.124231,40.71631,-74.02795,illegal_dumping,2,Illegal Dumping near Facility_04,Facility_04
+V_00236,2026-02-18T08:48:24.124231,40.7423,-74.01556,vehicle_emission,2,Vehicle Emission near Facility_05,Facility_05
+V_00237,2026-02-16T05:48:24.125229,40.74035,-74.01475,vehicle_emission,2,Vehicle Emission near Facility_16,Facility_16
+V_00238,2026-02-13T12:48:24.125229,40.71337,-74.02586,dumping,1,Dumping near Facility_23,Facility_23
+V_00239,2026-02-18T21:48:24.125229,40.74504,-74.01151,vehicle_emission,2,Vehicle Emission near Facility_22,Facility_22
+V_00240,2026-02-13T11:48:24.125229,40.74355,-74.01127,noise_violation,1,Noise Violation near Facility_23,Facility_23
+V_00241,2026-02-18T12:48:24.125229,40.74364,-74.01547,vehicle_emission,2,Vehicle Emission near Facility_03,Facility_03
+V_00242,2026-02-17T00:48:24.125229,40.69602,-73.99908,chemical_spill,3,Chemical Spill near Facility_24,Facility_24
+V_00243,2026-02-09T04:48:24.125229,40.7207,-73.99744,illegal_burning,4,Illegal Burning near Facility_21,Facility_21
+V_00244,2026-02-14T02:48:24.125229,40.72112,-73.99487,industrial_emission,5,Industrial Emission near Facility_13,Facility_13
+V_00245,2026-01-20T21:48:24.125229,40.7226,-74.0011,industrial_emission,5,Industrial Emission near Facility_13,Facility_13
+V_00246,2026-02-14T03:48:24.125229,40.70846,-74.0326,dumping,2,Dumping near Facility_08,Facility_08
+V_00247,2026-02-18T02:48:24.125229,40.74129,-74.01263,vehicle_emission,3,Vehicle Emission near Facility_06,Facility_06
+V_00248,2026-02-16T12:48:24.125229,40.72475,-73.9963,industrial_emission,5,Industrial Emission near Facility_13,Facility_13
+V_00249,2026-02-17T17:48:24.125229,40.68959,-73.99331,sewage_discharge,2,Sewage Discharge near Facility_21,Facility_21
+V_00250,2026-02-01T23:48:24.125229,40.70905,-74.02167,dumping,1,Dumping near Facility_22,Facility_22
+V_00251,2026-02-11T22:48:24.125229,40.72615,-73.99519,illegal_burning,3,Illegal Burning near Facility_22,Facility_22
+V_00252,2026-02-18T20:48:24.125229,40.72451,-73.99466,industrial_emission,5,Industrial Emission near Facility_13,Facility_13
+V_00253,2026-02-15T17:48:24.125229,40.74679,-74.01225,noise_violation,2,Noise Violation near Facility_10,Facility_10
+V_00254,2026-02-18T16:48:24.125229,40.69077,-73.9906,chemical_spill,2,Chemical Spill near Facility_04,Facility_04
+V_00255,2026-02-11T13:48:24.125229,40.68851,-74.00077,chemical_spill,3,Chemical Spill near Facility_12,Facility_12
+V_00256,2026-02-15T07:48:24.125229,40.71146,-74.03167,dumping,1,Dumping near Facility_22,Facility_22
+V_00257,2026-02-10T07:48:24.125229,40.73553,-74.01293,noise_violation,1,Noise Violation near Facility_19,Facility_19
+V_00258,2026-02-14T22:48:24.125229,40.7199,-73.99614,illegal_burning,3,Illegal Burning near Facility_08,Facility_08
+V_00259,2026-02-18T11:48:24.125229,40.70932,-74.02443,illegal_dumping,3,Illegal Dumping near Facility_07,Facility_07
+V_00260,2026-02-18T11:48:24.125229,40.71343,-74.03213,illegal_dumping,1,Illegal Dumping near Facility_04,Facility_04
+V_00261,2026-02-18T17:48:24.125229,40.72075,-73.99654,illegal_burning,3,Illegal Burning near Facility_02,Facility_02
+V_00262,2026-02-18T22:48:24.125229,40.69819,-73.99408,sewage_discharge,2,Sewage Discharge near Facility_11,Facility_11
+V_00263,2026-02-13T01:48:24.125229,40.74452,-74.01517,vehicle_emission,1,Vehicle Emission near Facility_05,Facility_05
+V_00264,2026-02-13T02:48:24.125229,40.71298,-74.02794,dumping,2,Dumping near Facility_09,Facility_09
+V_00265,2026-02-10T08:48:24.125229,40.74398,-74.01774,noise_violation,2,Noise Violation near Facility_11,Facility_11
+V_00266,2026-02-16T05:48:24.125229,40.72675,-73.99541,illegal_burning,5,Illegal Burning near Facility_05,Facility_05
+V_00267,2026-02-18T14:48:24.125229,40.69073,-73.99711,chemical_spill,3,Chemical Spill near Facility_12,Facility_12
+V_00268,2026-02-01T07:48:24.125229,40.72085,-73.99745,illegal_burning,3,Illegal Burning near Facility_09,Facility_09
+V_00269,2026-02-11T10:48:24.125229,40.74407,-74.01909,noise_violation,1,Noise Violation near Facility_24,Facility_24
+V_00270,2026-02-17T11:48:24.125229,40.71273,-74.01957,dumping,3,Dumping near Facility_12,Facility_12
+V_00271,2026-02-13T16:48:24.125229,40.72411,-73.99938,industrial_emission,4,Industrial Emission near Facility_01,Facility_01
+V_00272,2026-02-12T11:48:24.125229,40.71203,-74.03101,illegal_dumping,2,Illegal Dumping near Facility_03,Facility_03
+V_00273,2026-02-16T11:48:24.125229,40.74474,-74.02159,noise_violation,1,Noise Violation near Facility_14,Facility_14
+V_00274,2026-02-16T06:48:24.125229,40.72347,-73.99286,industrial_emission,5,Industrial Emission near Facility_02,Facility_02
+V_00275,2026-02-15T04:48:24.125229,40.74142,-74.0209,vehicle_emission,1,Vehicle Emission near Facility_08,Facility_08
+V_00276,2026-02-12T17:48:24.125229,40.69723,-73.99186,chemical_spill,2,Chemical Spill near Facility_12,Facility_12
+V_00277,2026-02-15T18:48:24.125229,40.74399,-74.01503,vehicle_emission,1,Vehicle Emission near Facility_21,Facility_21
+V_00278,2026-02-16T12:48:24.125229,40.72443,-73.99711,illegal_burning,4,Illegal Burning near Facility_14,Facility_14
+V_00279,2026-02-16T09:48:24.125229,40.70425,-74.02947,illegal_dumping,2,Illegal Dumping near Facility_12,Facility_12
+V_00280,2026-02-01T17:48:24.125229,40.68892,-73.99252,chemical_spill,2,Chemical Spill near Facility_08,Facility_08
+V_00281,2026-02-18T10:48:24.125229,40.71384,-74.03067,illegal_dumping,1,Illegal Dumping near Facility_12,Facility_12
+V_00282,2026-02-16T19:48:24.125229,40.71303,-74.02985,illegal_dumping,2,Illegal Dumping near Facility_09,Facility_09
+V_00283,2026-02-12T17:48:24.125229,40.69132,-73.99405,sewage_discharge,1,Sewage Discharge near Facility_03,Facility_03
+V_00284,2026-02-10T06:48:24.125229,40.69175,-73.99705,sewage_discharge,2,Sewage Discharge near Facility_11,Facility_11
+V_00285,2026-02-08T13:48:24.125229,40.69903,-73.99491,sewage_discharge,4,Sewage Discharge near Facility_07,Facility_07
+V_00286,2026-02-15T13:48:24.126230,40.72202,-73.99659,industrial_emission,3,Industrial Emission near Facility_07,Facility_07
+V_00287,2026-02-06T03:48:24.126230,40.69269,-73.99639,chemical_spill,2,Chemical Spill near Facility_20,Facility_20
+V_00288,2026-02-16T03:48:24.126230,40.72304,-74.00199,illegal_burning,4,Illegal Burning near Facility_05,Facility_05
+V_00289,2026-02-13T10:48:24.126230,40.69384,-74.0023,sewage_discharge,5,Sewage Discharge near Facility_01,Facility_01
+V_00290,2026-02-01T20:48:24.126230,40.69612,-73.99912,sewage_discharge,3,Sewage Discharge near Facility_08,Facility_08
+V_00291,2026-02-17T02:48:24.126230,40.70964,-74.02517,illegal_dumping,1,Illegal Dumping near Facility_09,Facility_09
+V_00292,2026-02-04T08:48:24.126230,40.72223,-73.99535,industrial_emission,4,Industrial Emission near Facility_14,Facility_14
+V_00293,2026-02-14T17:48:24.126230,40.72429,-73.99609,illegal_burning,5,Illegal Burning near Facility_12,Facility_12
+V_00294,2026-02-17T15:48:24.126230,40.7234,-73.99285,illegal_burning,4,Illegal Burning near Facility_08,Facility_08
+V_00295,2026-02-13T17:48:24.126230,40.72636,-73.99927,illegal_burning,5,Illegal Burning near Facility_21,Facility_21
+V_00296,2026-02-08T19:48:24.126230,40.72371,-73.99826,illegal_burning,3,Illegal Burning near Facility_14,Facility_14
+V_00297,2026-02-13T05:48:24.126230,40.74379,-74.01498,noise_violation,3,Noise Violation near Facility_03,Facility_03
+V_00298,2026-02-11T05:48:24.126230,40.71207,-74.02311,illegal_dumping,2,Illegal Dumping near Facility_05,Facility_05
+V_00299,2026-02-16T19:48:24.126230,40.70912,-74.02384,dumping,2,Dumping near Facility_20,Facility_20
