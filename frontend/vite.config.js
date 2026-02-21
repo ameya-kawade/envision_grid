@@ -24,6 +24,10 @@ export default defineConfig({
       '/simulate': 'http://127.0.0.1:8000',
       '/map-data': 'http://127.0.0.1:8000',
       '/grid': 'http://127.0.0.1:8000',
+      '/analytics': 'http://127.0.0.1:8000',
+      '/report': 'http://127.0.0.1:8000',
+      '/risk': 'http://127.0.0.1:8000',
+      '/map': 'http://127.0.0.1:8000',
     },
   },
 })

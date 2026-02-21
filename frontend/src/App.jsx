@@ -10,6 +10,7 @@ import { CoveragePage } from '@/pages/CoveragePage';
 import { PredictionsPage } from '@/pages/PredictionsPage';
 import { DataIngestion } from '@/pages/DataIngestion';
 import { HotspotsPage } from '@/pages/HotspotsPage';
+import { AnalyticsPage } from '@/pages/AnalyticsPage';
 
 // Placeholder for analytics
 const Analytics = () => (
@@ -32,7 +33,7 @@ function App() {
           <Route path="/coverage" element={<CoveragePage />} />
           <Route path="/policy" element={<PolicySimulation />} />
           <Route path="/ingest" element={<DataIngestion />} />
-          <Route path="/analytics" element={<Analytics />} />
+          <Route path="/analytics" element={<AnalyticsPage />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </MainLayout>

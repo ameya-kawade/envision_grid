@@ -56,6 +56,12 @@ def init_db():
     # ── cases ────────────────────────────────────────────────────────
     db.cases.create_index("alert_id")
 
+    # ── cascade_results ──────────────────────────────────────────────
+    db.cascade_results.create_index([("grid_id", 1), ("computed_at", DESCENDING)])
+
+    # ── risk_memory ───────────────────────────────────────────────────
+    db.risk_memory.create_index([("grid_id", 1), ("risk_type", 1)], unique=True)
+
 
 # ── Insert helpers ────────────────────────────────────────────────────
 
@@ -286,3 +292,195 @@ def get_complaint_count() -> int:
 def get_sensor_count() -> int:
     db = get_db()
     return db.sensors.count_documents({})
+
+
+def get_analytics_summary() -> dict:
+    """
+    Aggregate data from MongoDB collections for dashboard charts.
+    Returns:
+      - risk_by_grid: top 10 grids by latest risk score
+      - violations_by_type: count per violation type
+      - risk_distribution: buckets low/medium/high/critical
+      - alerts_by_day: alert count per day for last 7 days
+      - risk_type_breakdown: count per risk_type in predictions
+      - totals: aggregate counts
+    """
+    from datetime import timedelta
+    db = get_db()
+
+    # ── 1. Top 10 grids by risk score ────────────────────────────────
+    pipeline_top = [
+        {"$sort": {"run_timestamp": -1}},
+        {"$group": {
+            "_id": "$grid_id",
+            "risk_score": {"$first": "$risk_score"},
+            "risk_type": {"$first": "$risk_type"},
+        }},
+        {"$sort": {"risk_score": -1}},
+        {"$limit": 10},
+    ]
+    risk_by_grid = [
+        {"grid_id": r["_id"], "risk_score": round(r["risk_score"], 3), "risk_type": r.get("risk_type", "all")}
+        for r in db.predictions.aggregate(pipeline_top)
+    ]
+
+    # ── 2. Violations by type ─────────────────────────────────────────
+    pipeline_vtypes = [
+        {"$group": {"_id": "$violation_type", "count": {"$sum": 1}}},
+        {"$sort": {"count": -1}},
+        {"$limit": 10},
+    ]
+    violations_by_type = [
+        {"type": r["_id"] or "Unknown", "count": r["count"]}
+        for r in db.violations.aggregate(pipeline_vtypes)
+    ]
+
+    # ── 3. Risk score distribution buckets ───────────────────────────
+    all_preds = list(db.predictions.aggregate([
+        {"$sort": {"run_timestamp": -1}},
+        {"$group": {"_id": "$grid_id", "risk_score": {"$first": "$risk_score"}}},
+    ]))
+    dist = {"Low (<0.4)": 0, "Medium (0.4-0.6)": 0, "High (0.6-0.8)": 0, "Critical (>0.8)": 0}
+    for p in all_preds:
+        s = p.get("risk_score", 0)
+        if s >= 0.8:
+            dist["Critical (>0.8)"] += 1
+        elif s >= 0.6:
+            dist["High (0.6-0.8)"] += 1
+        elif s >= 0.4:
+            dist["Medium (0.4-0.6)"] += 1
+        else:
+            dist["Low (<0.4)"] += 1
+    risk_distribution = [{"name": k, "value": v} for k, v in dist.items()]
+
+    # ── 4. Alerts per day (last 7 days) ──────────────────────────────
+    cutoff = datetime.utcnow() - timedelta(days=7)
+    pipeline_alerts = [
+        {"$match": {"created_at": {"$gte": cutoff.isoformat()}}},
+        {"$group": {
+            "_id": {"$substr": ["$created_at", 0, 10]},
+            "count": {"$sum": 1},
+        }},
+        {"$sort": {"_id": 1}},
+    ]
+    alerts_by_day = [
+        {"date": r["_id"], "alerts": r["count"]}
+        for r in db.alerts.aggregate(pipeline_alerts)
+    ]
+
+    # ── 5. Risk type breakdown ────────────────────────────────────────
+    pipeline_rtypes = [
+        {"$sort": {"run_timestamp": -1}},
+        {"$group": {"_id": "$grid_id", "risk_type": {"$first": "$risk_type"}}},
+        {"$group": {"_id": "$risk_type", "count": {"$sum": 1}}},
+        {"$sort": {"count": -1}},
+    ]
+    risk_type_breakdown = [
+        {"type": r["_id"] or "all", "count": r["count"]}
+        for r in db.predictions.aggregate(pipeline_rtypes)
+    ]
+
+    # ── 6. Totals ─────────────────────────────────────────────────────
+    totals = {
+        "total_violations": db.violations.count_documents({}),
+        "total_complaints": db.complaints.count_documents({}),
+        "total_alerts": db.alerts.count_documents({}),
+        "active_alerts": db.alerts.count_documents({"resolved": {"$ne": True}}),
+        "open_cases": db.cases.count_documents({"status": {"$in": ["OPEN", "IN_PROGRESS"]}}),
+        "grids_monitored": len(db.predictions.distinct("grid_id")),
+    }
+
+    return {
+        "risk_by_grid": risk_by_grid,
+        "violations_by_type": violations_by_type,
+        "risk_distribution": risk_distribution,
+        "alerts_by_day": alerts_by_day,
+        "risk_type_breakdown": risk_type_breakdown,
+        "totals": totals,
+    }
+
+
+# ═══════════════════════════════════════════════════════════════════════
+# CASCADE RESULTS
+# ═══════════════════════════════════════════════════════════════════════
+
+def save_cascade_result(grid_id: str, result: Dict[str, Any]) -> None:
+    """Upsert the latest cascade propagation result for a grid."""
+    db = get_db()
+    doc = {
+        **result,
+        "grid_id": grid_id,
+        "computed_at": datetime.utcnow().isoformat(),
+    }
+    doc.pop("_id", None)
+    db.cascade_results.update_one(
+        {"grid_id": grid_id},
+        {"$set": doc},
+        upsert=True
+    )
+
+
+def get_cascade_result(grid_id: str) -> Optional[Dict[str, Any]]:
+    """Fetch the most recent cascade result for a grid."""
+    db = get_db()
+    doc = db.cascade_results.find_one(
+        {"grid_id": grid_id},
+        {"_id": 0},
+        sort=[("computed_at", DESCENDING)]
+    )
+    return doc
+
+
+def get_all_cascade_results(limit: int = 500) -> List[Dict[str, Any]]:
+    """Fetch latest cascade result per grid — for map/cascading-risk endpoint."""
+    db = get_db()
+    # Use aggregation to ensure one-per-grid (latest)
+    pipeline = [
+        {"$sort": {"computed_at": -1}},
+        {"$group": {
+            "_id": "$grid_id",
+            "doc": {"$first": "$$ROOT"}
+        }},
+        {"$replaceRoot": {"newRoot": "$doc"}},
+        {"$project": {"_id": 0}},
+        {"$limit": limit},
+    ]
+    return list(db.cascade_results.aggregate(pipeline))
+
+
+# ═══════════════════════════════════════════════════════════════════════
+# RISK MEMORY
+# ═══════════════════════════════════════════════════════════════════════
+
+def get_risk_memory(grid_id: str, risk_type: str = "all") -> Optional[Dict[str, Any]]:
+    """Fetch the risk memory record for a grid+type."""
+    db = get_db()
+    return db.risk_memory.find_one(
+        {"grid_id": grid_id, "risk_type": risk_type},
+        {"_id": 0}
+    )
+
+
+def upsert_risk_memory(grid_id: str, risk_type: str, delta: float) -> float:
+    """
+    Increment recurrence_weight by delta (capped at 1.0).
+    Returns the new weight value.
+    """
+    db = get_db()
+    now = datetime.utcnow().isoformat()
+
+    # Read current weight
+    existing = get_risk_memory(grid_id, risk_type)
+    current = existing.get("recurrence_weight", 0.0) if existing else 0.0
+    new_weight = min(current + delta, 1.0)
+
+    db.risk_memory.update_one(
+        {"grid_id": grid_id, "risk_type": risk_type},
+        {"$set": {
+            "recurrence_weight": new_weight,
+            "updated_at": now,
+        }, "$inc": {"event_count": 1}},
+        upsert=True
+    )
+    return new_weight
+

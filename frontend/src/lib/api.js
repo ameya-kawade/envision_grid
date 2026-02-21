@@ -117,6 +117,19 @@ export const getMapData = (risk_type, limit = 500) => {
     return fetch(`/map-data?${p}`).then(handleResponse);
 };
 
+// ── Analytics ────────────────────────────────────────────────────────
+export const getAnalyticsSummary = () =>
+    fetch('/analytics/summary').then(handleResponse);
+
+// ── Playbook ─────────────────────────────────────────────────────────
+export const generatePlaybook = (data) =>
+    fetch('/report/playbook', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+    }).then(handleResponse);
+
+
 // ── Simulation ──────────────────────────────────────────────────────
 export const runSimulation = (params) =>
     fetch('/simulate', {

@@ -68,3 +68,23 @@ VIOLATION_RISK_MAP = {
     "hazardous_waste":      "waste",
     "noise_violation":      "air",   # fallback
 }
+
+# ── OpenRouter AI (Playbook Generation) ───────────────────────────────
+OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY", "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")
+OPENROUTER_MODEL = os.getenv("OPENROUTER_MODEL", "google/gemma-3n-e2b-it:free")
+
+
+OPENROUTER_BASE_URL = "https://openrouter.ai/api/v1"
+
+REPORT_TOP_N = int(os.getenv("REPORT_TOP_N", "2"))
+
+# ── Email / SMTP ─────────────────────────────────────────────────────
+SMTP_HOST = os.getenv("SMTP_HOST", "smtp.gmail.com")
+SMTP_PORT = int(os.getenv("SMTP_PORT", "587"))
+SMTP_USER = os.getenv("SMTP_USER", "ameya.kawade25@vit.edu")
+SMTP_PASSWORD = os.getenv("SMTP_PASSWORD", "tzxq wfwf pbmr ttdd")
+REPORT_RECIPIENT = os.getenv("REPORT_RECIPIENT", "kawadeameya@gmail.com")
+
+# ── Cron Schedule ────────────────────────────────────────────────────
+CRON_HOUR = int(os.getenv("CRON_HOUR", "8"))      # daily at 8:00 AM
+CRON_MINUTE = int(os.getenv("CRON_MINUTE", "0"))
