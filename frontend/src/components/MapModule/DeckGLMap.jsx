@@ -1,4 +1,4 @@
-import React, { useMemo, useEffect, useState, useCallback } from 'react';
+import React, { useMemo, useEffect, useState, useCallback, useRef } from 'react';
 import DeckGL from '@deck.gl/react';
 import { ScatterplotLayer } from '@deck.gl/layers';
 import { Map } from 'react-map-gl/maplibre';
@@ -9,6 +9,7 @@ const MAP_STYLE = "https://basemaps.cartocdn.com/gl/dark-matter-gl-style/style.j
 
 // Horizon label → horizon_hours for backend filter
 const HORIZON_HOURS = { '24h': 24, '72h': 72, '7d': 168 };
+const CACHE_TTL = 5 * 60 * 1000; // 5 minutes
 
 // Severity → color mapping for deck.gl
 const getRiskColor = (score) => {
@@ -33,39 +34,48 @@ export function DeckGLMap({ simulatedPoint = null }) {
     const { setActiveZone, horizon, horizonCache, setHorizonCache } = useStore();
     const [mapPoints, setMapPoints] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [zoneCount, setZoneCount] = useState(0);
+    const fetchingRef = useRef(false);
 
-    useEffect(() => {
-        let cancelled = false;
+    const fetchMapData = useCallback(async (h, force = false) => {
+        if (fetchingRef.current && !force) return;
+        fetchingRef.current = true;
         setLoading(true);
 
-        const horizonHours = HORIZON_HOURS[horizon] ?? null;
-        const cacheEntry = horizonCache[horizon];
-        const CACHE_TTL = 5 * 60 * 1000;
+        const horizonHours = HORIZON_HOURS[h] ?? null;
+        const cacheEntry = horizonCache[h];
 
-        // Use cached data if still fresh (< 5 min)
-        if (cacheEntry && Date.now() - cacheEntry.fetchedAt < CACHE_TTL) {
+        // Use cached data if still fresh (< 5 min) and not forced
+        if (!force && cacheEntry && cacheEntry.data && Date.now() - cacheEntry.fetchedAt < CACHE_TTL) {
             setMapPoints(cacheEntry.data);
+            setZoneCount(cacheEntry.data.length);
             setLoading(false);
+            fetchingRef.current = false;
             return;
         }
 
-        getMapData(null, 500, horizonHours)
-            .then((points) => {
-                if (cancelled) return;
-                const arr = Array.isArray(points) ? points : [];
-                setMapPoints(arr);
-                setHorizonCache(horizon, arr);
-                setLoading(false);
-            })
-            .catch(() => {
-                if (!cancelled) {
-                    setMapPoints([]);
-                    setLoading(false);
-                }
-            });
+        try {
+            const points = await getMapData(null, 500, horizonHours);
+            const arr = Array.isArray(points) ? points : [];
+            setMapPoints(arr);
+            setZoneCount(arr.length);
+            setHorizonCache(h, arr);
+        } catch (err) {
+            console.error('Map data fetch failed:', err);
+            setMapPoints([]);
+            setZoneCount(0);
+        } finally {
+            setLoading(false);
+            fetchingRef.current = false;
+        }
+    }, [horizonCache, setHorizonCache]);
 
-        return () => { cancelled = true; };
-    }, [horizon, horizonCache, setHorizonCache]);
+    // Re-fetch whenever horizon changes OR cache is invalidated
+    useEffect(() => {
+        const cacheEntry = horizonCache[horizon];
+        const isStale = !cacheEntry || !cacheEntry.data || Date.now() - cacheEntry.fetchedAt >= CACHE_TTL;
+        fetchMapData(horizon, isStale);
+    }, [horizon, horizonCache]);  // eslint-disable-line react-hooks/exhaustive-deps
 
     const layers = useMemo(() => {
         const result = [];
@@ -81,6 +91,10 @@ export function DeckGLMap({ simulatedPoint = null }) {
                 radiusMinPixels: 6,
                 radiusMaxPixels: 50,
                 opacity: 0.85,
+                updateTriggers: {
+                    getFillColor: mapPoints,
+                    getRadius: mapPoints,
+                },
                 onClick: ({ object }) => {
                     if (object) {
                         setActiveZone({
@@ -153,7 +167,7 @@ export function DeckGLMap({ simulatedPoint = null }) {
                     ))}
                 </div>
                 <div className="mt-2 pt-2 border-t border-border text-xs text-muted-foreground">
-                    {mapPoints.length} zones loaded
+                    {zoneCount} zones · {horizon}
                 </div>
             </div>
 
@@ -161,7 +175,7 @@ export function DeckGLMap({ simulatedPoint = null }) {
                 <div className="absolute inset-0 z-30 flex items-center justify-center bg-black/40">
                     <div className="bg-card border border-border rounded-lg px-6 py-4 shadow-xl flex items-center gap-3">
                         <div className="w-5 h-5 border-2 border-primary border-t-transparent rounded-full animate-spin"></div>
-                        <span className="text-sm font-medium">Loading map data...</span>
+                        <span className="text-sm font-medium">Loading {horizon} predictions...</span>
                     </div>
                 </div>
             )}

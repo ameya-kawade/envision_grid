@@ -7,7 +7,7 @@ import os
 # ── Database (MongoDB Atlas) ──────────────────────────────────────────
 MONGO_URI = os.getenv(
     "ENVISIONGRID_MONGO_URI",
-    "mongodb://admin:admin123@localhost:27017/"
+    "mongodb+srv://ameyakawade0:ameya123@cluster0.cuvilli.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
 )
 MONGO_DB_NAME = os.getenv("ENVISIONGRID_DB_NAME", "envisiongrid")
 

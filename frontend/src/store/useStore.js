@@ -13,7 +13,15 @@ export const useStore = create((set) => ({
         set((state) => ({
             horizonCache: {
                 ...state.horizonCache,
-                [horizon]: { data, fetchedAt: Date.now() },
+                [horizon]: data ? { data, fetchedAt: Date.now() } : null,
+            },
+        })),
+    // Force-invalidate a horizon's cache so DeckGLMap will re-fetch
+    invalidateHorizonCache: (horizon) =>
+        set((state) => ({
+            horizonCache: {
+                ...state.horizonCache,
+                [horizon]: null,
             },
         })),
     isCacheValid: (horizon) => (state) => {

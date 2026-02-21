@@ -7,19 +7,20 @@ import { triggerBulkPredict } from '@/lib/api';
 import { cn } from '@/lib/utils';
 
 const HORIZONS = [
-    { label: '24h', hours: 24, title: 'Next 24h' },
-    { label: '72h', hours: 72, title: 'Next 72h' },
+    { label: '24h', hours: 24, title: 'Next 24 hours' },
+    { label: '72h', hours: 72, title: 'Next 72 hours' },
     { label: '7d', hours: 168, title: 'Next 7 days' },
 ];
 
 export function CommandCenter() {
-    const { activeZone, setActiveZone, horizon, setHorizon, setHorizonCache } = useStore();
+    const { activeZone, setActiveZone, horizon, setHorizon, invalidateHorizonCache } = useStore();
     const [refreshing, setRefreshing] = useState(false);
     const [lastRefreshed, setLastRefreshed] = useState(null);
 
-    const handleHorizonChange = useCallback(async (h) => {
+    const handleHorizonChange = useCallback((h) => {
         if (h === horizon) return;
         setHorizon(h);
+        // Cache checked in DeckGLMap — no need to invalidate on simple tab switch
     }, [horizon, setHorizon]);
 
     const handleRefresh = useCallback(async () => {
@@ -27,17 +28,17 @@ export function CommandCenter() {
         setRefreshing(true);
         try {
             const hrs = HORIZONS.find(h => h.label === horizon)?.hours ?? 72;
+            // Trigger backend prediction run
             await triggerBulkPredict(hrs, 0.4);
-            // Invalidate cache for this horizon so DeckGLMap re-fetches
-            setHorizonCache(horizon, null);
-            setTimeout(() => setHorizonCache(horizon, null), 50);
+            // Clear stale cache so DeckGLMap re-fetches
+            invalidateHorizonCache(horizon);
             setLastRefreshed(new Date());
         } catch (e) {
             console.error('Refresh failed:', e);
         } finally {
             setRefreshing(false);
         }
-    }, [horizon, refreshing, setHorizonCache]);
+    }, [horizon, refreshing, invalidateHorizonCache]);
 
     return (
         <div className="flex flex-col h-full w-full">
@@ -66,10 +67,10 @@ export function CommandCenter() {
                     onClick={handleRefresh}
                     disabled={refreshing}
                     className="flex items-center gap-1.5 px-3 py-1.5 text-xs rounded-md border border-border bg-muted/40 hover:bg-muted text-muted-foreground hover:text-foreground transition-all disabled:opacity-50"
-                    title="Trigger fresh predictions from backend"
+                    title="Run fresh predictions and reload map zones"
                 >
                     <RefreshCw className={cn('w-3.5 h-3.5', refreshing && 'animate-spin')} />
-                    {refreshing ? 'Running...' : 'Refresh'}
+                    {refreshing ? 'Running...' : 'Refresh Zones'}
                 </button>
                 {lastRefreshed && (
                     <div className="flex items-center gap-1 text-xs text-green-500">
