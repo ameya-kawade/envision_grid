@@ -165,6 +165,76 @@ def get_predictions(
     return db.get_predictions(risk_type, horizon, limit)
 
 
+@app.post("/predict/single")
+def predict_single(req: dict):
+    """
+    Run a single-grid prediction with optional feature overrides.
+    Accepts: {lat, lon, horizon_hours?, risk_type?, use_sensors?, overrides?}
+    overrides keys: violation_count_7d, complaint_count_7d, sensor_aqi, recency_decay_score
+    Returns: {grid_id, original_*, simulated_*, delta, drivers, cascade_score}
+    """
+    lat = req.get("lat")
+    lon = req.get("lon")
+    if lat is None or lon is None:
+        raise HTTPException(status_code=422, detail="lat and lon are required")
+    try:
+        lat, lon = float(lat), float(lon)
+    except (TypeError, ValueError):
+        raise HTTPException(status_code=422, detail="lat and lon must be numbers")
+
+    gid = get_grid_id(lat, lon)
+    horizon_hours = int(req.get("horizon_hours", 72))
+    risk_type = req.get("risk_type", "all")
+    use_sensors = req.get("use_sensors", True)
+    overrides = req.get("overrides", {})
+
+    # ── Original prediction ────────────────────────────────────────────
+    base_feats = compute_features(gid, use_sensors=use_sensors)
+    base_feats["neighbor_spillover_3d"] = compute_neighbor_spillover(gid, use_sensors)
+    original_pred = _model.predict(base_feats, risk_type, horizon_hours, use_sensors)
+
+    # ── Simulated prediction (with overrides) ──────────────────────────
+    sim_feats = {**base_feats}
+    OVERRIDE_MAP = {
+        "violation_count_7d":   "violation_count_7d",
+        "complaint_count_7d":   "complaint_count_7d",
+        "sensor_aqi":           "avg_aqi_72h",
+        "recency_decay_score":  "recency_decay_score",
+    }
+    for k, v in overrides.items():
+        feat_key = OVERRIDE_MAP.get(k, k)
+        try:
+            sim_feats[feat_key] = float(v)
+        except (TypeError, ValueError):
+            pass
+
+    sim_pred = _model.predict(sim_feats, risk_type, horizon_hours, use_sensors)
+
+    delta = round(sim_pred["risk_score"] - original_pred["risk_score"], 4)
+
+    # ── Run cascade for both ────────────────────────────────────────────
+    from src.services.cascading_engine import propagate
+    orig_primary = {risk_type: original_pred["risk_score"]} if risk_type != "all" else {"all": original_pred["risk_score"]}
+    sim_primary  = {risk_type: sim_pred["risk_score"]}      if risk_type != "all" else {"all": sim_pred["risk_score"]}
+    orig_cascade = propagate(orig_primary)
+    sim_cascade  = propagate(sim_primary)
+
+    return {
+        "grid_id":               gid,
+        "lat":                   lat,
+        "lon":                   lon,
+        "original_risk_score":   round(original_pred["risk_score"], 4),
+        "simulated_risk_score":  round(sim_pred["risk_score"], 4),
+        "delta":                 delta,
+        "original_drivers":      original_pred["drivers"],
+        "simulated_drivers":     sim_pred["drivers"],
+        "original_cascade_score": round(orig_cascade["cascade_score"], 4),
+        "simulated_cascade_score": round(sim_cascade["cascade_score"], 4),
+        "cascade_delta":         round(sim_cascade["cascade_score"] - orig_cascade["cascade_score"], 4),
+        "horizon_hours":         horizon_hours,
+    }
+
+
 # ═══════════════════════════════════════════════════════════════════════
 # ALERTS & CASES
 # ═══════════════════════════════════════════════════════════════════════
@@ -225,13 +295,14 @@ def analytics_summary_endpoint():
 def map_data_endpoint(
     risk_type: Optional[str] = None,
     limit: int = Query(500, ge=1, le=5000),
+    horizon_hours: Optional[int] = Query(None, description="Filter by prediction horizon: 24, 72, or 168"),
 ):
     """
     Bulk map-ready data for deck.gl rendering.
-    Returns [{grid_id, lat, lon, risk_score, risk_type, confidence}] —
-    one entry per grid cell (latest prediction), sorted by risk_score desc.
+    Returns [{grid_id, lat, lon, risk_score, risk_type, confidence, horizon_hours}] —
+    one entry per grid cell (latest prediction for that horizon), sorted by risk_score desc.
     """
-    return get_map_data(risk_type=risk_type, limit=limit)
+    return get_map_data(risk_type=risk_type, limit=limit, horizon_hours=horizon_hours)
 
 # ═══════════════════════════════════════════════════════════════════════
 # REPORT

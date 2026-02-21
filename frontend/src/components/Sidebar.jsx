@@ -21,7 +21,7 @@ const navItems = [
     { icon: Flame, label: 'Risk Hotspots', path: '/hotspots' },
     { icon: Briefcase, label: 'Case Management', path: '/cases' },
     { icon: Radar, label: 'Coverage Analysis', path: '/coverage' },
-    { icon: Sliders, label: 'Policy Simulation', path: '/policy' },
+    { icon: Sliders, label: 'Risk Simulation', path: '/policy' },
     { icon: Upload, label: 'Data Ingestion', path: '/ingest' },
     { icon: BarChart3, label: 'Analytics', path: '/analytics' },
 ];

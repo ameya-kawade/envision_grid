@@ -1,18 +1,36 @@
 import { create } from 'zustand';
 
+const CACHE_TTL_MS = 5 * 60 * 1000; // 5 minutes
+
 export const useStore = create((set) => ({
     activeZone: null,
     setActiveZone: (zone) => set({ activeZone: zone }),
     horizon: '24h', // '24h', '72h', '7d'
     setHorizon: (horizon) => set({ horizon }),
-    city: 'San Francisco, CA',
+    // Per-horizon session cache: { '24h': { data: [...], fetchedAt: timestamp } }
+    horizonCache: {},
+    setHorizonCache: (horizon, data) =>
+        set((state) => ({
+            horizonCache: {
+                ...state.horizonCache,
+                [horizon]: { data, fetchedAt: Date.now() },
+            },
+        })),
+    isCacheValid: (horizon) => (state) => {
+        const entry = state.horizonCache[horizon];
+        return entry && Date.now() - entry.fetchedAt < CACHE_TTL_MS;
+    },
+    city: 'Mumbai, India',
     setCity: (city) => set({ city }),
     viewState: {
-        latitude: 37.7749,
-        longitude: -122.4194,
-        zoom: 12,
-        pitch: 45,
-        bearing: 0
+        latitude: 19.07,
+        longitude: 72.88,
+        zoom: 10,
+        pitch: 0,
+        bearing: 0,
     },
     setViewState: (viewState) => set({ viewState }),
 }));
+
+// Helper used by components — checks 5-min TTL
+export const horizonCacheTTL = CACHE_TTL_MS;

@@ -230,16 +230,23 @@ def get_all_grid_ids() -> List[str]:
 
 # ── Map / deck.gl ─────────────────────────────────────────────────────
 
-def get_map_data(risk_type: Optional[str] = None, limit: int = 500) -> List[Dict]:
+def get_map_data(
+    risk_type: Optional[str] = None,
+    limit: int = 500,
+    horizon_hours: Optional[int] = None,
+) -> List[Dict]:
     """
     Return the latest prediction per grid, ready for deck.gl rendering.
-    Each element: {grid_id, lat, lon, risk_score, risk_type, confidence}
+    Each element: {grid_id, lat, lon, risk_score, risk_type, confidence, horizon_hours}
     Uses an aggregation pipeline to de-duplicate (latest run per grid).
+    Optionally filters by horizon_hours (24, 72, 168 for 7d).
     """
     db = get_db()
     match_stage: Dict[str, Any] = {}
     if risk_type and risk_type != "all":
         match_stage["risk_type"] = risk_type
+    if horizon_hours is not None:
+        match_stage["horizon_hours"] = horizon_hours
 
     pipeline = [
         {"$match": match_stage} if match_stage else {"$match": {}},
@@ -250,6 +257,7 @@ def get_map_data(risk_type: Optional[str] = None, limit: int = 500) -> List[Dict
             "confidence":    {"$first": "$confidence"},
             "risk_type":     {"$first": "$risk_type"},
             "center":        {"$first": "$center"},
+            "horizon_hours": {"$first": "$horizon_hours"},
             "run_timestamp": {"$first": "$run_timestamp"},
         }},
         {"$limit": limit},
@@ -266,6 +274,7 @@ def get_map_data(risk_type: Optional[str] = None, limit: int = 500) -> List[Dict
             "risk_score":    row.get("risk_score", 0),
             "risk_type":     row.get("risk_type", "all"),
             "confidence":    row.get("confidence", 0),
+            "horizon_hours": row.get("horizon_hours"),
             "run_timestamp": row.get("run_timestamp"),
         })
 

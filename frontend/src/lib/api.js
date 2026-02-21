@@ -11,11 +11,11 @@ const handleResponse = async (res) => {
     return res.json();
 };
 
-// ── Health ───────────────────────────────────────────────────────────
+// Health
 export const getHealth = () =>
     fetch('/health').then(handleResponse);
 
-// ── Ingestion ────────────────────────────────────────────────────────
+// Ingestion
 export const ingestViolationsCSV = (file) => {
     const fd = new FormData();
     fd.append('file', file);
@@ -48,11 +48,11 @@ export const ingestSensorEvent = (reading) =>
         body: JSON.stringify(reading),
     }).then(handleResponse);
 
-// ── Grid ─────────────────────────────────────────────────────────────
+// Grid
 export const getGridPreview = (lat, lon) =>
     fetch(`/grid/preview?lat=${lat}&lon=${lon}`).then(handleResponse);
 
-// ── Predictions ──────────────────────────────────────────────────────
+// Predictions
 export const runPrediction = (params = {}) =>
     fetch('/predict', {
         method: 'POST',
@@ -60,7 +60,7 @@ export const runPrediction = (params = {}) =>
         body: JSON.stringify({
             risk_type: params.risk_type || 'all',
             horizon_hours: params.horizon_hours || 72,
-            threshold: params.threshold || 0.6,
+            threshold: params.threshold || 0.4,
             use_sensors: params.use_sensors !== false,
         }),
     }).then(handleResponse);
@@ -73,7 +73,7 @@ export const getPredictions = ({ risk_type, horizon, limit } = {}) => {
     return fetch(`/predictions?${p}`).then(handleResponse);
 };
 
-// ── Alerts ───────────────────────────────────────────────────────────
+// Alerts
 export const getAlerts = () =>
     fetch('/alerts').then(handleResponse);
 
@@ -84,7 +84,7 @@ export const createAlertFromPrediction = (data) =>
         body: JSON.stringify(data),
     }).then(handleResponse);
 
-// ── Cases ────────────────────────────────────────────────────────────
+// Cases
 export const getCases = () =>
     fetch('/cases').then(handleResponse);
 
@@ -102,26 +102,27 @@ export const updateCase = (caseId, data) =>
         body: JSON.stringify(data),
     }).then(handleResponse);
 
-// ── Analytics ────────────────────────────────────────────────────────
+// Analytics
 export const getHotspots = (limit = 15, useSensors = true) =>
     fetch(`/hotspots?limit=${limit}&use_sensors=${useSensors}`).then(handleResponse);
 
 export const getCoverage = () =>
     fetch('/coverage').then(handleResponse);
 
-// ── Map Data (deck.gl) ──────────────────────────────────────────────
-export const getMapData = (risk_type, limit = 500) => {
+// Map Data (deck.gl) — supports optional horizon_hours filter
+export const getMapData = (risk_type, limit = 500, horizon_hours = null) => {
     const p = new URLSearchParams();
     if (risk_type && risk_type !== 'all') p.set('risk_type', risk_type);
     if (limit) p.set('limit', limit);
+    if (horizon_hours != null) p.set('horizon_hours', String(horizon_hours));
     return fetch(`/map-data?${p}`).then(handleResponse);
 };
 
-// ── Analytics ────────────────────────────────────────────────────────
+// Analytics
 export const getAnalyticsSummary = () =>
     fetch('/analytics/summary').then(handleResponse);
 
-// ── Playbook ─────────────────────────────────────────────────────────
+// Playbook
 export const generatePlaybook = (data) =>
     fetch('/report/playbook', {
         method: 'POST',
@@ -129,11 +130,31 @@ export const generatePlaybook = (data) =>
         body: JSON.stringify(data),
     }).then(handleResponse);
 
-
-// ── Simulation ──────────────────────────────────────────────────────
+// Legacy Simulation (old /simulate endpoint)
 export const runSimulation = (params) =>
     fetch('/simulate', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(params),
+    }).then(handleResponse);
+
+// Risk Simulation — single-grid prediction with parameter overrides
+export const predictSingle = (params) =>
+    fetch('/predict/single', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(params),
+    }).then(handleResponse);
+
+// Trigger a full bulk predict run for a given horizon
+export const triggerBulkPredict = (horizon_hours = 72, threshold = 0.4) =>
+    fetch('/predict', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            risk_type: 'all',
+            horizon_hours,
+            threshold,
+            use_sensors: true,
+        }),
     }).then(handleResponse);

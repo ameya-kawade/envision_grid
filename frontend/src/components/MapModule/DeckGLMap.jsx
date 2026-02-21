@@ -1,22 +1,25 @@
 import React, { useMemo, useEffect, useState, useCallback } from 'react';
 import DeckGL from '@deck.gl/react';
-import { ScatterplotLayer, GeoJsonLayer } from '@deck.gl/layers';
+import { ScatterplotLayer } from '@deck.gl/layers';
 import { Map } from 'react-map-gl/maplibre';
 import { useStore } from '@/store/useStore';
-import { getMapData, getHotspots } from '@/lib/api';
+import { getMapData } from '@/lib/api';
 
 const MAP_STYLE = "https://basemaps.cartocdn.com/gl/dark-matter-gl-style/style.json";
 
+// Horizon label → horizon_hours for backend filter
+const HORIZON_HOURS = { '24h': 24, '72h': 72, '7d': 168 };
+
 // Severity → color mapping for deck.gl
 const getRiskColor = (score) => {
-    if (score >= 0.8) return [220, 38, 38, 220]; // red
-    if (score >= 0.6) return [249, 115, 22, 200]; // orange
-    if (score >= 0.4) return [234, 179, 8, 180]; // yellow
-    if (score >= 0.2) return [34, 197, 94, 160]; // green
-    return [100, 116, 139, 120];                    // slate
+    if (score >= 0.8) return [220, 38, 38, 230]; // red
+    if (score >= 0.6) return [249, 115, 22, 210]; // orange
+    if (score >= 0.4) return [234, 179, 8, 190];  // yellow
+    if (score >= 0.2) return [34, 197, 94, 170];  // green
+    return [100, 116, 139, 130];                   // slate
 };
 
-const getRiskRadius = (score) => Math.max(400, score * 2500);
+const getRiskRadius = (score) => Math.max(400, score * 2800);
 
 const INITIAL_VIEW = {
     longitude: 78.9,
@@ -26,20 +29,32 @@ const INITIAL_VIEW = {
     bearing: 0,
 };
 
-export function DeckGLMap() {
-    const { setActiveZone, horizon } = useStore();
+export function DeckGLMap({ simulatedPoint = null }) {
+    const { setActiveZone, horizon, horizonCache, setHorizonCache } = useStore();
     const [mapPoints, setMapPoints] = useState([]);
     const [loading, setLoading] = useState(true);
 
-    // Fetch real data from backend
     useEffect(() => {
         let cancelled = false;
         setLoading(true);
 
-        getMapData(null, 500)
+        const horizonHours = HORIZON_HOURS[horizon] ?? null;
+        const cacheEntry = horizonCache[horizon];
+        const CACHE_TTL = 5 * 60 * 1000;
+
+        // Use cached data if still fresh (< 5 min)
+        if (cacheEntry && Date.now() - cacheEntry.fetchedAt < CACHE_TTL) {
+            setMapPoints(cacheEntry.data);
+            setLoading(false);
+            return;
+        }
+
+        getMapData(null, 500, horizonHours)
             .then((points) => {
                 if (cancelled) return;
-                setMapPoints(Array.isArray(points) ? points : []);
+                const arr = Array.isArray(points) ? points : [];
+                setMapPoints(arr);
+                setHorizonCache(horizon, arr);
                 setLoading(false);
             })
             .catch(() => {
@@ -50,7 +65,7 @@ export function DeckGLMap() {
             });
 
         return () => { cancelled = true; };
-    }, [horizon]);
+    }, [horizon, horizonCache, setHorizonCache]);
 
     const layers = useMemo(() => {
         const result = [];
@@ -64,7 +79,7 @@ export function DeckGLMap() {
                 getRadius: d => getRiskRadius(d.risk_score),
                 getFillColor: d => getRiskColor(d.risk_score),
                 radiusMinPixels: 6,
-                radiusMaxPixels: 45,
+                radiusMaxPixels: 50,
                 opacity: 0.85,
                 onClick: ({ object }) => {
                     if (object) {
@@ -82,8 +97,25 @@ export function DeckGLMap() {
             }));
         }
 
+        // Overlay simulated point if provided (from Risk Simulation page)
+        if (simulatedPoint) {
+            result.push(new ScatterplotLayer({
+                id: 'sim-point',
+                data: [simulatedPoint],
+                pickable: false,
+                getPosition: d => [d.lon, d.lat],
+                getRadius: () => 1200,
+                getFillColor: () => [139, 92, 246, 220], // purple for simulated
+                radiusMinPixels: 10,
+                radiusMaxPixels: 60,
+                stroked: true,
+                lineWidthMinPixels: 2,
+                getLineColor: () => [255, 255, 255, 180],
+            }));
+        }
+
         return result;
-    }, [mapPoints, setActiveZone]);
+    }, [mapPoints, setActiveZone, simulatedPoint]);
 
     const getTooltip = useCallback(({ object }) => {
         if (!object || object.risk_score === undefined) return null;
@@ -121,7 +153,7 @@ export function DeckGLMap() {
                     ))}
                 </div>
                 <div className="mt-2 pt-2 border-t border-border text-xs text-muted-foreground">
-                    {mapPoints.length} data points loaded
+                    {mapPoints.length} zones loaded
                 </div>
             </div>
 

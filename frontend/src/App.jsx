@@ -4,7 +4,7 @@ import { MainLayout } from '@/layouts/MainLayout';
 
 import { CommandCenter } from '@/pages/CommandCenter';
 import { AlertsCenter } from '@/pages/AlertsCenter';
-import { PolicySimulation } from '@/pages/PolicySimulation';
+import { RiskSimulation } from '@/pages/RiskSimulation';
 import { CasesPage } from '@/pages/CasesPage';
 import { CoveragePage } from '@/pages/CoveragePage';
 import { PredictionsPage } from '@/pages/PredictionsPage';
@@ -31,7 +31,7 @@ function App() {
           <Route path="/hotspots" element={<HotspotsPage />} />
           <Route path="/cases" element={<CasesPage />} />
           <Route path="/coverage" element={<CoveragePage />} />
-          <Route path="/policy" element={<PolicySimulation />} />
+          <Route path="/policy" element={<RiskSimulation />} />
           <Route path="/ingest" element={<DataIngestion />} />
           <Route path="/analytics" element={<AnalyticsPage />} />
           <Route path="*" element={<Navigate to="/" replace />} />
